@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📚 reviewer · shuffled · one by one</title>
+    <title>📚 reviewer · 80 questions · shuffled</title>
     <style>
         * {
             box-sizing: border-box;
@@ -269,8 +269,8 @@
 <body>
 <div class="reviewer-card">
     <div class="header">
-        <h1>📌 reviewer <span class="shuffle-note">(shuffled)</span></h1>
-        <div class="progress-badge" id="progressBadge">1 / 42</div>
+        <h1>📌 reviewer <span class="shuffle-note">(80 · shuffled)</span></h1>
+        <div class="progress-badge" id="progressBadge">1 / 80</div>
     </div>
 
     <div class="question-container" id="questionContainer">
@@ -290,11 +290,12 @@
 
 <script>
     // --------------------------------------------------------------
-    //  ALL QUESTIONS (from the reviewer) – 42 entries
-    //  Each object: question, options (array of 4 strings), correctIndex
+    //  ALL QUESTIONS – 30 (review) + 50 (exam) = 80 total
     // --------------------------------------------------------------
     const questions = [
-        // BST & data structure review (21 questions)
+        // ----------------------------------------------------------
+        //  FIRST 30 – original review questions
+        // ----------------------------------------------------------
         { q: "A BST has 20 as its root, 10 as the left child, and 30 as the right child. If you search for 15, which path is examined before the search ends unsuccessfully?", options: ["20 → 30", "20 → 10", "10 → 20", "20 → 30 → 10"], correct: 1 },
         { q: "A BST node with key 40 has two children. When this node is removed, which replacement keeps the BST ordering property intact?", options: ["Any leaf in the tree", "The smallest key in its right subtree", "The largest key in the entire tree", "The root key of the left subtree"], correct: 1 },
         { q: "A student needs to list the keys of a BST in ascending order without sorting the results afterward. Which traversal should be used?", options: ["Preorder", "Level-order", "Postorder", "Inorder"], correct: 3 },
@@ -326,39 +327,74 @@
         { q: "A printer queue receives the jobs J1, J2, and J3 in that order. After J1 finishes and a new job J4 arrives, which job should print next?", options: ["J4", "J3", "J2", "J1"], correct: 2 },
         { q: "A binary tree has to be visited level by level, left to right within each level. Which structure should hold the nodes that are waiting to be visited?", options: ["Call stack", "Queue", "Set", "Hash table"], correct: 1 },
 
-        // Part I: Stack and Queue (16 questions)
-        { q: "How would you define a stack?", options: ["A data structure that allows insertion at one end and removal at the other end", "A data structure whose items are ordered by key value", "A data structure that allows operations on data only at one end", "A data structure whose rear wraps around to the first location"], correct: 2 },
-        { q: "The acronym LIFO stands for which of the following?", options: ["Last In, First Out", "First In, First Out", "Last In, Final Out", "Linear In, First Out"], correct: 0 },
-        { q: "Which of the following describes what the push operation does?", options: ["Removes an element from the top of the stack", "Gets the top element without removing it", "Checks if the stack is full", "Adds an element at the top of the stack"], correct: 3 },
-        { q: "Which of the following describes what the pop operation does?", options: ["Adds an element to the top of the stack", "Removes an element from the top of the stack", "Checks if the stack is empty", "Gets the element at the front of the stack"], correct: 1 },
-        { q: "In a stack, what is the purpose of the peek operation?", options: ["Removes the top element of the stack", "Adds an element at the top of the stack", "Gets the top element of the stack", "Checks if the stack is full"], correct: 2 },
-        { q: "Which stack operation is used to determine whether the stack has no elements?", options: ["isFull", "Peek", "Push", "isEmpty"], correct: 3 },
-        { q: "How is infix notation best described?", options: ["A notation in which the operator follows the operands", "A notation in which the operator comes before the operands", "The normal arithmetic notation in which the operator is between the operands", "A notation that uses brackets only"], correct: 2 },
-        { q: "How is postfix notation best described?", options: ["A notation in which the operator follows the operands", "A notation in which the operator is between the operands", "A notation in which the operator comes before the operands", "A notation in which the operands are arranged alphabetically"], correct: 0 },
-        { q: "What is the postfix form of the infix expression A+B?", options: ["+AB", "A+B", "BA+", "AB+"], correct: 3 },
-        { q: "How would you define a queue?", options: ["A data structure in which the last item inserted is the first item removed", "A data structure similar to a stack in which the first item inserted is the first item removed", "A data structure whose items are ordered by key value", "A data structure that allows operations at only one end"], correct: 1 },
-        { q: "The acronym FIFO stands for which of the following?", options: ["First In, First Out", "First In, Final Out", "Fast In, Fast Out", "Final In, First Out"], correct: 0 },
-        { q: "Which of the following describes what the enqueue (insert) operation does?", options: ["Removes an item from the front of the queue", "Gets the element at the front of the queue", "Checks if the queue is full", "Adds an item to the rear of the queue"], correct: 3 },
-        { q: "Which of the following describes what the dequeue (remove) operation does?", options: ["Removes an item from the front of the queue", "Adds an item to the rear of the queue", "Gets the front item without removing it", "Adds an item to the front of the queue"], correct: 0 },
-        { q: "Which of the following best describes a circular queue?", options: ["A queue whose items are ordered by key value", "A queue that can be accessed at only one end", "A queue in which the rear wraps around to the bottom location after reaching the last index", "A queue that removes the largest item first"], correct: 2 },
-        { q: "Which of the following best describes a priority queue?", options: ["A queue that follows the LIFO principle", "A queue that can store only one item", "A queue that has no front and no rear", "A specialized queue whose items are ordered by key value, so the item with the lowest (or highest) key is at the front"], correct: 3 },
-        { q: "Which statement correctly identifies the main difference between a stack and a queue?", options: ["A stack is based on FIFO, while a queue is based on LIFO.", "A stack is based on LIFO, while a queue is based on FIFO.", "A stack orders its items by key value, while a queue does not.", "A stack allows access at both ends, while a queue allows access at one end."], correct: 1 },
+        // ----------------------------------------------------------
+        //  NEXT 50 – exam questions (Part I, II, III)
+        // ----------------------------------------------------------
+        // PART I — Stack and Queue (Items 1–16)
+        { q: "What is a stack?", options: ["A data structure that allows insertion at one end and removal at the other end", "A data structure whose items are ordered by key value", "A data structure that allows operations on data only at one end", "A data structure whose rear wraps around to the first location"], correct: 2 },
+        { q: "What does LIFO stand for?", options: ["Last In, First Out", "First In, First Out", "Last In, Final Out", "Linear In, First Out"], correct: 0 },
+        { q: "What does the push operation do?", options: ["Removes an element from the top of the stack", "Gets the top element without removing it", "Checks if the stack is full", "Adds an element at the top of the stack"], correct: 3 },
+        { q: "What does the pop operation do?", options: ["Adds an element to the top of the stack", "Removes an element from the top of the stack", "Checks if the stack is empty", "Gets the element at the front of the stack"], correct: 1 },
+        { q: "What does the peek operation do in a stack?", options: ["Removes the top element of the stack", "Adds an element at the top of the stack", "Gets the top element of the stack", "Checks if the stack is full"], correct: 2 },
+        { q: "Which operation checks if a stack is empty?", options: ["isFull", "Peek", "Push", "isEmpty"], correct: 3 },
+        { q: "What is infix notation?", options: ["A notation in which the operator follows the operands", "A notation in which the operator comes before the operands", "The normal arithmetic notation in which the operator is between the operands", "A notation that uses brackets only"], correct: 2 },
+        { q: "What is postfix notation?", options: ["A notation in which the operator follows the operands", "A notation in which the operator is between the operands", "A notation in which the operator comes before the operands", "A notation in which the operands are arranged alphabetically"], correct: 0 },
+        { q: "Which is the postfix notation of the infix expression A+B?", options: ["+AB", "A+B", "BA+", "AB+"], correct: 3 },
+        { q: "What is a queue?", options: ["A data structure in which the last item inserted is the first item removed", "A data structure similar to a stack in which the first item inserted is the first item removed", "A data structure whose items are ordered by key value", "A data structure that allows operations at only one end"], correct: 1 },
+        { q: "What does FIFO stand for?", options: ["First In, First Out", "First In, Final Out", "Fast In, Fast Out", "Final In, First Out"], correct: 0 },
+        { q: "What does the enqueue (insert) operation do?", options: ["Removes an item from the front of the queue", "Gets the element at the front of the queue", "Checks if the queue is full", "Adds an item to the rear of the queue"], correct: 3 },
+        { q: "What does the dequeue (remove) operation do?", options: ["Removes an item from the front of the queue", "Adds an item to the rear of the queue", "Gets the front item without removing it", "Adds an item to the front of the queue"], correct: 0 },
+        { q: "What is a circular queue?", options: ["A queue whose items are ordered by key value", "A queue that can be accessed at only one end", "A queue in which the rear wraps around to the bottom location after reaching the last index", "A queue that removes the largest item first"], correct: 2 },
+        { q: "What is a priority queue?", options: ["A queue that follows the LIFO principle", "A queue that can store only one item", "A queue that has no front and no rear", "A specialized queue whose items are ordered by key value, so the item with the lowest (or highest) key is at the front"], correct: 3 },
+        { q: "Which statement correctly states the primary difference between a stack and a queue?", options: ["A stack is based on FIFO, while a queue is based on LIFO.", "A stack is based on LIFO, while a queue is based on FIFO.", "A stack orders its items by key value, while a queue does not.", "A stack allows access at both ends, while a queue allows access at one end."], correct: 1 },
 
-        // Part II: Sorting Algorithms (5 questions)
-        { q: "How would you define sorting?", options: ["The process of removing duplicate elements from an array", "The process of rearranging the elements of an array so they are in ascending or descending order", "The process of searching for an element in an array", "The process of dividing an array into two equal halves"], correct: 1 },
-        { q: "Which of the following describes a stable sorting algorithm?", options: ["One that never uses loops", "One that always runs in O(n) time", "One that sorts only numbers", "One that ensures elements having the same value do not change their locations in the sorted array"], correct: 3 },
-        { q: "Which strategy does the merge sort algorithm follow?", options: ["Divide and conquer", "Selecting the minimum element", "Repeated swapping of adjacent elements", "Building a heap"], correct: 0 },
-        { q: "Which of the following best describes the basic idea behind merge sort?", options: ["Pick up an element as a key and shift it to its correct location", "Go through the array repeatedly, swapping elements that are out of place", "Break the array into smaller segments, sort them, and merge them into larger segments until the whole array is sorted", "Build a max heap and extract the root"], correct: 2 },
+        // PART II — Sorting Algorithms (Items 17–32)
+        { q: "What is sorting?", options: ["The process of removing duplicate elements from an array", "The process of rearranging the elements of an array so they are in ascending or descending order", "The process of searching for an element in an array", "The process of dividing an array into two equal halves"], correct: 1 },
+        { q: "What is a stable sorting algorithm?", options: ["One that never uses loops", "One that always runs in O(n) time", "One that sorts only numbers", "One that ensures elements having the same value do not change their locations in the sorted array"], correct: 3 },
+        { q: "Which strategy does merge sort use?", options: ["Divide and conquer", "Selecting the minimum element", "Repeated swapping of adjacent elements", "Building a heap"], correct: 0 },
+        { q: "What is the basic idea of merge sort?", options: ["Pick up an element as a key and shift it to its correct location", "Go through the array repeatedly, swapping elements that are out of place", "Break the array into smaller segments, sort them, and merge them into larger segments until the whole array is sorted", "Build a max heap and extract the root"], correct: 2 },
+        { q: "Which two concepts does heap sort combine?", options: ["Tree and sorting", "Stack and queue", "Array and string", "Recursion and iteration"], correct: 0 },
+        { q: "What is a min-heap?", options: ["A heap that contains the maximum element at the root", "A heap that contains the minimum element at the root", "A heap that has no root", "A heap whose elements are sorted in descending order"], correct: 1 },
+        { q: "What is a max-heap?", options: ["A heap that contains the minimum element at the root", "A heap that holds only two elements", "A heap that is sorted using two loops", "A heap that contains the maximum element at the root"], correct: 3 },
+        { q: "Which statement describes insertion sort?", options: ["It uses two loops to select the minimum element.", "It divides the array into halves and merges them.", "It picks up an element as the key and, if the key is smaller than its predecessor, shifts it to its correct location.", "It builds a max heap and extracts the root."], correct: 2 },
+        { q: "What is selection sort?", options: ["An algorithm that repeatedly swaps adjacent elements", "An algorithm that uses two loops, where the inner loop picks the minimum element and the outer loop indicates its correct index", "An algorithm that builds a heap from the array", "An algorithm that divides the array and merges the parts"], correct: 1 },
+        { q: "What is accomplished in every run of the outer loop of selection sort?", options: ["The array is split into two halves", "The heap is rebuilt", "All elements are swapped", "One element is placed in its correct location"], correct: 3 },
+        { q: "What is bubble sort?", options: ["An algorithm that goes through the array repeatedly, swapping elements that are not in their correct location", "An algorithm that picks the minimum element and makes a single swap per pass", "An algorithm that divides the array and merges the segments", "An algorithm that builds a max heap"], correct: 0 },
+        { q: "Which sorting algorithm relies on multiple swaps instead of the single swap used by selection sort?", options: ["Merge sort", "Heap sort", "Bubble sort", "Insertion sort"], correct: 2 },
+        { q: "What is the average time complexity of merge sort?", options: ["O(n)", "O(n log n)", "O(n²)", "O(log n)"], correct: 1 },
+        { q: "Which two algorithms do most beginners start their sorting career with?", options: ["Merge sort and heap sort", "Heap sort and insertion sort", "Merge sort and bubble sort", "Bubble sort and selection sort"], correct: 3 },
+        { q: "Which list shows the five popular sorting algorithms covered in the module?", options: ["Merge, Quick, Heap, Selection, and Bubble", "Merge, Heap, Insertion, Selection, and Bubble", "Merge, Heap, Insertion, Shell, and Bubble", "Heap, Quick, Insertion, Selection, and Radix"], correct: 1 },
+        { q: "What is the element called that insertion sort picks up and compares with its predecessor?", options: ["Key", "Pivot", "Root", "Bucket"], correct: 0 },
+
+        // PART III — Trees (Items 33–50)
+        { q: "Which statement describes a tree data structure?", options: ["A linear structure in which each element has exactly one successor", "A non-linear, hierarchical structure in which each element may have many successors but only one predecessor", "A structure that allows access only at one end", "A structure whose elements are stored in a circular arrangement"], correct: 1 },
+        { q: "What is the root of a tree?", options: ["A node with no children", "A node with exactly two children", "The unique topmost node, which has no parent", "The last node on the lowest level"], correct: 2 },
+        { q: "What is a leaf (external node)?", options: ["A node with no children", "A node with at least one child", "The topmost node of the tree", "A link between a parent and a child"], correct: 0 },
+        { q: "What is an internal node?", options: ["A node with no children", "A node with at least one child", "A link between a parent and a child", "A node with no parent"], correct: 1 },
+        { q: "What is an edge in a tree?", options: ["The topmost node", "A node with no children", "A link between a parent and a child", "A node together with its descendants"], correct: 2 },
+        { q: "What are siblings?", options: ["Nodes that share the same parent", "Nodes on the path from the root to a leaf", "Nodes that have no children", "Nodes that are on different levels"], correct: 0 },
+        { q: "What is the degree of a node?", options: ["The number of edges from the root to the node", "The number of children the node has", "The level on which the node is found", "The number of ancestors of the node"], correct: 1 },
+        { q: "In this module, what is the level of the root node?", options: ["1", "−1", "0", "2"], correct: 2 },
+        { q: "What is a subtree?", options: ["A node plus all of its descendants", "A node plus all of its ancestors", "Only the leaf nodes of a tree", "A link between two nodes"], correct: 0 },
+        { q: "What is a binary tree?", options: ["A tree in which every node has exactly three children", "A tree in which every node has at most two children, a left child and a right child", "A tree in which every node has exactly one child", "A tree in which all values are sorted"], correct: 1 },
+        { q: "What is a full binary tree?", options: ["A binary tree in which all leaves are on the same level", "A binary tree in which every node has only one child", "A binary tree in which every node has either 0 or 2 children", "A binary tree in which only the root has children"], correct: 2 },
+        { q: "What is a complete binary tree?", options: ["A binary tree in which all levels are full except possibly the last, which fills from left to right", "A binary tree in which every node has either 0 or 2 children", "A binary tree in which every node has only one child", "A binary tree in which only the root has children"], correct: 0 },
+        { q: "What is a perfect binary tree?", options: ["A binary tree in which every node has only one child", "A binary tree in which all internal nodes have two children and all leaves are on the same level", "A binary tree in which only the last level is full", "A binary tree stored as a linked list"], correct: 1 },
+        { q: "What is a degenerate (skewed) tree?", options: ["A tree in which every node has two children", "A tree in which all leaves are on the same level", "A tree in which every node has only one child, so it behaves like a linked list", "A tree that has only a root"], correct: 2 },
+        { q: "Which traversal visits the nodes in the order Node, Left, Right?", options: ["Inorder", "Postorder", "Level-order", "Preorder"], correct: 3 },
+        { q: "Which traversal visits the nodes in the order Left, Node, Right?", options: ["Preorder", "Postorder", "Level-order", "Inorder"], correct: 3 },
+        { q: "Which traversal visits the nodes in the order Left, Right, Node?", options: ["Postorder", "Preorder", "Inorder", "Level-order"], correct: 0 },
+        { q: "Which data structure does level-order traversal use?", options: ["Stack", "Heap", "Linked list", "Queue"], correct: 3 },
     ];
 
     // --------------------------------------------------------------
     //  State
     // --------------------------------------------------------------
-    let shuffledQuestions = [];      // will hold the shuffled copy
+    let shuffledQuestions = [];
     let currentIndex = 0;
     let score = 0;
     let answered = false;
-    let totalQuestions = questions.length;
+    let totalQuestions = questions.length;   // should be 80
 
     // DOM elements
     const questionTextEl = document.getElementById('questionText');
@@ -389,6 +425,8 @@
         currentIndex = 0;
         score = 0;
         answered = false;
+        // update totalQuestions in case array changed
+        totalQuestions = shuffledQuestions.length;
         renderQuestion();
     }
 
